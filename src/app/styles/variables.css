@@ -1,0 +1,43 @@
+:root {
+  /* Backgrounds */
+  --bg-page: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #0F172A;
+  --bg-readonly: #F1F5F9;
+ 
+  /* Text */
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-placeholder: #94A3B8;
+ 
+  /* Primary blue */
+  --color-primary: #3B82F6;
+  --color-primary-hover: #2563EB;
+  --color-primary-light: #EFF6FF;
+ 
+  /* Borders */
+  --border-color: #E2E8F0;
+ 
+  /* Status = completed */
+  --status-completed-bg: #F0FDF4;
+  --status-completed-text: #15803D;
+ 
+  /* Status = pending */
+  --status-pending-bg: #FFFBEB;
+  --status-pending-text: #92400E;
+ 
+  /* Status = failed */
+  --status-failed-bg: #FEF2F2;
+  --status-failed-text: #991B1B;
+ 
+  /* Sizing */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+ 
+  --sidebar-width: 240px;
+ 
+  /* TODO: Add typography fonts */
+}
+ 
