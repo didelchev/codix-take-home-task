@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+input,
+select,
+textarea {
+  font: inherit;
+  outline: none;
+}
