@@ -1,11 +1,12 @@
-interface Client {
+export interface Client {
     name: string,
     secondName: string,
-    emai: string,
+    email: string,
     phone: string,
     address: string,
     city: string,
     country: string,
     accountNumber: string,
-    bankCard: string
+    bankCard: string,
+    [key: string]: string;
 }

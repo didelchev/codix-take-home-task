@@ -9,7 +9,7 @@ import { LucideAngularModule, User, DollarSign, Palette } from 'lucide-angular';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
-export class Sidebar implements OnInit, OnDestroy {
+export class Sidebar  {
 
   time = signal('');
   period = signal('');

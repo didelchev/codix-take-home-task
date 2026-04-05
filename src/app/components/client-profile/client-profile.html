@@ -1,1 +1,113 @@
-<p>client-profile works!</p>
+@if (!isReady) {
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <span class="loading-text">Loading client data...</span>
+  </div>
+}
+
+@if (isReady && errorMessage) {
+  <div class="error-container">
+    <div class="error-icon">!</div>
+    <span class="error-title">Something went wrong</span>
+    <span class="error-description">{{ errorMessage }}</span>
+  </div>
+}
+
+@if (isReady && client) {
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Client Profile</h1>
+      <p class="page-subtitle">Manage your personal and account information</p>
+    </div>
+    <div class="avatar">{{ client.name[0] }}{{ client.secondName[0] }}</div>
+  </div>
+
+  <div class="welcome-card">
+    <h2 class="welcome-title">Hello, {{ client.name }}!</h2>
+    <p class="welcome-subtitle">Manage your personal and account information</p>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-card">
+      <span class="overview-label">Account status</span>
+      <span class="overview-value status-active">Active</span>
+    </div>
+    <div class="overview-card">
+      <span class="overview-label">Bank card</span>
+      <span class="overview-value">{{ client.bankCard }}</span>
+    </div>
+    <div class="overview-card">
+      <span class="overview-label">IBAN</span>
+      <span class="overview-value">{{ client.accountNumber }}</span>
+    </div>
+  </div>
+
+  <form #clientForm="ngForm">
+    <div class="card">
+      <h3 class="section-label">Personal information</h3>
+      <div class="field-grid">
+        @for (field of personalFields; track field.key) {
+          <div class="field">
+            <label [for]="field.key">{{ field.label }}</label>
+            <input
+              class="field-input"
+              [id]="field.key"
+              [type]="field.type"
+              [name]="field.key"
+              [(ngModel)]="client[field.key]"
+              [readonly]="field.readonly"
+              [class.readonly]="field.readonly"
+              required
+              #fieldRef="ngModel"
+            />
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="section-label">Address</h3>
+      <div class="field-grid">
+        @for (field of addressFields; track field.key) {
+          <div class="field">
+            <label [for]="field.key">{{ field.label }}</label>
+            <input
+              class="field-input"
+              [id]="field.key"
+              [type]="field.type"
+              [name]="field.key"
+              [(ngModel)]="client[field.key]"
+              [readonly]="field.readonly"
+              [class.readonly]="field.readonly"
+              required
+              #fieldRef="ngModel"
+            />
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="section-label">Banking details</h3>
+      <div class="field-grid">
+        @for (field of bankingFields; track field.key) {
+          <div class="field">
+            <label [for]="field.key">{{ field.label }}</label>
+            <input
+              class="field-input readonly"
+              [id]="field.key"
+              [type]="field.type"
+              [name]="field.key"
+              [(ngModel)]="client[field.key]"
+              readonly
+            />
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-primary" (click)="onSave()">Save changes</button>
+    </div>
+  </form>
+}
