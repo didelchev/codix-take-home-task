@@ -1,96 +1,81 @@
-<div class="greeting">
-  <h1 class="greeting-title">All <span class="greeting-name">Transactions</span></h1>
-  <p class="greeting-sub">View and manage your transaction history</p>
-</div>
-
-<div class="transactions-container">
-  <div class="filter-bar">
-    <div class="search-wrap">
-      <svg
-        class="search-icon"
-        width="16"
-        height="16"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-      >
-        <circle cx="11" cy="11" r="8" />
-        <path d="m21 21-4.35-4.35" />
-      </svg>
-      <input class="search-input" type="text" placeholder="Search transactions..." />
-    </div>
+@if (!isReady) {
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <span class="loading-text">Loading client data...</span>
   </div>
+}
 
-  <div class="table-wrap">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>City</th>
-          <th>Bank card</th>
-          <th>Type</th>
-          <th>Status</th>
-          <th>Amount</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div class="transaction-name">
-              <div class="transaction-avatar">GP</div>
-              <div>
-                <div class="transaction-title">Georgi Petrov</div>
-                <div class="transaction-bic">BNBGBGSD</div>
-              </div>
-            </div>
-          </td>
-          <td class="text-secondary">2025-03-01</td>
-          <td class="text-secondary">Sofia</td>
-          <td class="text-secondary">4532 **** **** 1234</td>
-          <td>
-            <span class="type-badge credit">Credit</span>
-          </td>
-          <td>
-            <span class="status-badge completed"> Completed </span>
-          </td>
-          <td class="amount-positive">+1500.00</td>
-          <td>
-            <button class="details-btn">Details</button>
-          </td>
-        </tr>
-        @for (transaction of transactions; track $index) {
+@if (isReady && transactions) {
+  <div class="greeting">
+    <h1 class="greeting-title">All <span class="greeting-name">Transactions</span></h1>
+    <p class="greeting-sub">View and manage your transaction history</p>
+  </div>
+  <div class="transactions-container">
+    <div class="filter-bar">
+      <div class="search-wrap">
+        <svg
+          class="search-icon"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input class="search-input" type="text" placeholder="Search transactions..." />
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
           <tr>
-            <td>
-              <div class="transaction-name">
-                <div class="transaction-avatar"></div>
-                <div>
-                  <div class="transaction-title">{{ transaction.name }}</div>
-                  <div class="transaction-bic">{{ transaction.bic }}</div>
-                </div>
-              </div>
-            </td>
-            <td class="text-secondary">{{ transaction.date }}</td>
-            <td class="text-secondary">{{ transaction.city }}</td>
-            <td class="text-secondary">{{ transaction.bankCard }}</td>
-            <td>
-              <span class="type-badge credit">{{ transaction.type }}</span>
-            </td>
-            <td>
-              <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">{{ transaction.status }}</span>
-            </td>
-            <td class="amount-positive">{{ transaction.amount }}</td>
-            <td>
-              <button class="details-btn">Details</button>
-            </td>
+            <th>Name</th>
+            <th>Date</th>
+            <th>City</th>
+            <th>Bank card</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Details</th>
           </tr>
-        }
-      </tbody>
-    </table>
-    <div class="pagination">
-      <span class="pagination-info">Showing 1–9 of 9 transactions</span>
+        </thead>
+        <tbody>
+          @for (transaction of transactions; track transaction.id) {
+            <tr>
+              <td>
+                <div class="transaction-name">
+                  <div class="transaction-avatar">{{transaction.name | customInitials}}</div>
+                  <div>
+                    <div class="transaction-title">{{ transaction.name }}</div>
+                    <div class="transaction-bic">{{ transaction.bic }}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-secondary">{{ transaction.date }}</td>
+              <td class="text-secondary">{{ transaction.city }}</td>
+              <td class="text-secondary">{{ transaction.bankCard }}</td>
+              <td>
+                <span class="type-badge credit">{{ transaction.type }}</span>
+              </td>
+              <td>
+                <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">{{
+                  transaction.status
+                }}</span>
+              </td>
+              <td class="amount-positive">{{ transaction.amount | customCurrency }}</td>
+              <td>
+                <button class="details-btn">Details</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <div class="pagination">
+        <span class="pagination-info">Showing 1–9 of 9 transactions</span>
+      </div>
     </div>
   </div>
-</div>
+}
