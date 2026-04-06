@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { NgClass } from '@angular/common';
+import { CustomInitialsPipe } from '../../pipes/initials.pipe';
+import { CustomCurrencyPipe } from '../../pipes/currency.pipe';
 
 @Component({
   selector: 'app-transactions',
-  imports: [NgClass],
+  imports: [NgClass, CustomInitialsPipe, CustomCurrencyPipe],
   templateUrl: './transactions.html',
   styleUrl: './transactions.css',
 })
