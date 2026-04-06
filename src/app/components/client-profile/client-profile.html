@@ -14,100 +14,120 @@
 }
 
 @if (isReady && client) {
-  <div class="page-header">
-    <div>
-      <h1 class="page-title">Client Profile</h1>
-      <p class="page-subtitle">Manage your personal and account information</p>
-    </div>
-    <div class="avatar">{{ client.name[0] }}{{ client.secondName[0] }}</div>
+  <div class="greeting">
+    <h1 class="greeting-title">Hello, <span class="greeting-name">{{ client.name }} </span></h1>
+    <p class="greeting-sub">Here is your account information</p>
   </div>
-
-  <div class="welcome-card">
-    <h2 class="welcome-title">Hello, {{ client.name }}!</h2>
-    <p class="welcome-subtitle">Manage your personal and account information</p>
-  </div>
-
-  <div class="overview-row">
-    <div class="overview-card">
-      <span class="overview-label">Account status</span>
-      <span class="overview-value status-active">Active</span>
-    </div>
-    <div class="overview-card">
-      <span class="overview-label">Bank card</span>
-      <span class="overview-value">{{ client.bankCard }}</span>
-    </div>
-    <div class="overview-card">
-      <span class="overview-label">IBAN</span>
-      <span class="overview-value">{{ client.accountNumber }}</span>
-    </div>
-  </div>
-
-  <form #clientForm="ngForm">
-    <div class="card">
-      <h3 class="section-label">Personal information</h3>
-      <div class="field-grid">
-        @for (field of personalFields; track field.key) {
-          <div class="field">
-            <label [for]="field.key">{{ field.label }}</label>
-            <input
-              class="field-input"
-              [id]="field.key"
-              [type]="field.type"
-              [name]="field.key"
-              [(ngModel)]="client[field.key]"
-              [readonly]="field.readonly"
-              [class.readonly]="field.readonly"
-              required
-              #fieldRef="ngModel"
-            />
+  <div class="client-page-container">
+    <div class="left-col">
+      <div class="credit-card">
+        <div class="card-chip"></div>
+        <div class="card-number">**** **** **** {{ client.bankCard.slice(-4) }}</div>
+        <div class="card-bottom">
+          <div class="card-field">
+            <span class="card-field-label">Card holder</span>
+            <span class="card-field-value">{{ client.name }} {{ client.secondName }}</span>
           </div>
-        }
+          <div class="card-field">
+            <span class="card-field-label">Expires</span>
+            <span class="card-field-value">12/28</span>
+          </div>
+          <div class="card-logo">VISA</div>
+        </div>
+      </div>
+      <div class="info-list">
+        <div class="info-row">
+          <span class="info-label">Card Holder First Name</span>
+          <span class="info-value">{{ client.name }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Card Holder Second Name</span>
+          <span class="info-value">{{ client.secondName }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Phone</span>
+          <span class="info-value">{{ client.phone }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-value">{{ client.city }}, {{ client.country }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Bank card</span>
+          <span class="info-value">{{ client.bankCard }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">IBAN</span>
+          <span class="info-value info-value--sm">{{ client.accountNumber }}</span>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h3 class="section-label">Address</h3>
-      <div class="field-grid">
-        @for (field of addressFields; track field.key) {
-          <div class="field">
-            <label [for]="field.key">{{ field.label }}</label>
-            <input
-              class="field-input"
-              [id]="field.key"
-              [type]="field.type"
-              [name]="field.key"
-              [(ngModel)]="client[field.key]"
-              [readonly]="field.readonly"
-              [class.readonly]="field.readonly"
-              required
-              #fieldRef="ngModel"
-            />
-          </div>
-        }
-      </div>
-    </div>
+    <form #clientForm="ngForm" class="right-col">
+      <div class="form-body">
+        <h3 class="section-label">Personal information</h3>
+        <div class="field-grid">
+          @for (field of personalFields; track field.key) {
+            <div class="field">
+              <label [for]="field.key">{{ field.label }}</label>
+              <input
+                class="field-input"
+                [id]="field.key"
+                [type]="field.type"
+                [name]="field.key"
+                [(ngModel)]="client[field.key]"
+                [readonly]="field.readonly"
+                [class.readonly]="field.readonly"
+                required
+              />
+            </div>
+          }
+        </div>
 
-    <div class="card">
-      <h3 class="section-label">Banking details</h3>
-      <div class="field-grid">
-        @for (field of bankingFields; track field.key) {
-          <div class="field">
-            <label [for]="field.key">{{ field.label }}</label>
-            <input
-              class="field-input readonly"
-              [id]="field.key"
-              [type]="field.type"
-              [name]="field.key"
-              [(ngModel)]="client[field.key]"
-              readonly
-            />
-          </div>
-        }
-      </div>
-    </div>
+        <div class="section-divider"></div>
 
-    <div class="form-actions">
-      <button type="button" class="btn-primary" (click)="onSave()">Save changes</button>
-    </div>
-  </form>
+        <h3 class="section-label">Address</h3>
+        <div class="field-grid address-grid">
+          @for (field of addressFields; track field.key) {
+            <div class="field">
+              <label [for]="field.key">{{ field.label }}</label>
+              <input
+                class="field-input"
+                [id]="field.key"
+                [type]="field.type"
+                [name]="field.key"
+                [(ngModel)]="client[field.key]"
+                [readonly]="field.readonly"
+                [class.readonly]="field.readonly"
+                required
+              />
+            </div>
+          }
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h3 class="section-label">Banking details</h3>
+        <div class="field-grid">
+          @for (field of bankingFields; track field.key) {
+            <div class="field">
+              <label [for]="field.key">{{ field.label }}</label>
+              <input
+                class="field-input readonly"
+                [id]="field.key"
+                [type]="field.type"
+                [name]="field.key"
+                [(ngModel)]="client[field.key]"
+                readonly
+              />
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-primary" (click)="onSave()">Save changes</button>
+      </div>
+    </form>
+  </div>
 }
