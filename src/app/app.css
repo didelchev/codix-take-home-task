@@ -1,10 +1,74 @@
-.app-layout{
-    display: flex;
-    min-height: 100vh;
+.app-layout {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-page);
+  overflow: hidden;
 }
 
-main {
+.main-wrapper {
   flex: 1;
-  padding: 32px 40px;
-  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-left: var(--sidebar-width);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.navbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navbar-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+.navbar-sub {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold)
+}
+
+.navbar-username {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+}
+
+.main-content {
+  width: 80%;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+  padding: 50px
 }
