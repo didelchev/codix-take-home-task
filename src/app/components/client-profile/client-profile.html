@@ -15,7 +15,7 @@
 
 @if (isReady && client) {
   <div class="greeting">
-    <h1 class="greeting-title">Hello, <span class="greeting-name">{{ client.name }} </span></h1>
+    <h1 class="greeting-title">Hello, <span class="greeting-name">{{ client.name }}</span></h1>
     <p class="greeting-sub">Here is your account information</p>
   </div>
   <div class="client-page-container">
@@ -65,11 +65,17 @@
 
     <form #clientForm="ngForm" class="right-col">
       <div class="form-body">
+
         <h3 class="section-label">Personal information</h3>
         <div class="field-grid">
           @for (field of personalFields; track field.key) {
             <div class="field">
-              <label [for]="field.key">{{ field.label }}</label>
+              <label [for]="field.key">
+                {{ field.label }}
+                @if (field.required) {
+                  <span class="required-star">*</span>
+                }
+              </label>
               <input
                 class="field-input"
                 [id]="field.key"
@@ -78,8 +84,22 @@
                 [(ngModel)]="client[field.key]"
                 [readonly]="field.readonly"
                 [class.readonly]="field.readonly"
-                required
+                [required]="field.required ?? false"
+                [email]="field.email ?? false"
+                [minlength]="field.minlength ?? ''"
+                #fieldRef="ngModel"
               />
+              @if (fieldRef.invalid && fieldRef.touched) {
+                @if (fieldRef.errors?.['required']) {
+                  <span class="error-message">{{ field.label }} is required</span>
+                }
+                @if (fieldRef.errors?.['email']) {
+                  <span class="error-message">Please enter a valid email</span>
+                }
+                @if (fieldRef.errors?.['minlength']) {
+                  <span class="error-message">{{ field.label }} must be at least {{ field.minlength }} characters</span>
+                }
+              }
             </div>
           }
         </div>
@@ -90,7 +110,12 @@
         <div class="field-grid address-grid">
           @for (field of addressFields; track field.key) {
             <div class="field">
-              <label [for]="field.key">{{ field.label }}</label>
+              <label [for]="field.key">
+                {{ field.label }}
+                @if (field.required) {
+                  <span class="required-star">*</span>
+                }
+              </label>
               <input
                 class="field-input"
                 [id]="field.key"
@@ -99,8 +124,14 @@
                 [(ngModel)]="client[field.key]"
                 [readonly]="field.readonly"
                 [class.readonly]="field.readonly"
-                required
+                [required]="field.required ?? false"
+                #fieldRef="ngModel"
               />
+              @if (fieldRef.invalid && fieldRef.touched) {
+                @if (fieldRef.errors?.['required']) {
+                  <span class="error-message">{{ field.label }} is required</span>
+                }
+              }
             </div>
           }
         </div>
@@ -123,10 +154,18 @@
             </div>
           }
         </div>
+
       </div>
 
       <div class="form-actions">
-        <button type="button" class="btn-primary" (click)="onSave()">Save changes</button>
+        <button
+          type="button"
+          class="btn-primary"
+          [disabled]="clientForm.invalid"
+          (click)="onSave()"
+        >
+          Save changes
+        </button>
       </div>
     </form>
   </div>
