@@ -1,6 +1,17 @@
 <div class="app-layout">
-    <app-sidebar></app-sidebar>
-    <main>
-        <router-outlet></router-outlet>
+  <app-sidebar></app-sidebar>
+  <div class="main-wrapper">
+    <header class="navbar">
+      <div class="navbar-left">
+        <p class="navbar-sub">Portal / Client Info</p>
+      </div>
+      <div class="navbar-right">
+        <div class="avatar">GP</div>
+        <span class="navbar-username">Georgi</span>
+      </div>
+    </header>
+    <main class="main-content">
+      <router-outlet></router-outlet>
     </main>
+  </div>
 </div>
