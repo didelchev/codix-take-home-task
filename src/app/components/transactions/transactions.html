@@ -13,19 +13,11 @@
   <div class="transactions-container">
     <div class="filter-bar">
       <div class="search-wrap">
-        <svg
-          class="search-icon"
-          width="16"
-          height="16"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
+        <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />
         </svg>
-        <input class="search-input" type="text" placeholder="Search transactions..." />
+        <input class="search-input" type="text" placeholder="Search transactions..." [(ngModel)]="searchQuery" (ngModelChange)="filterTransactionsArray()" />
       </div>
     </div>
     <div class="table-wrap">
@@ -43,38 +35,46 @@
           </tr>
         </thead>
         <tbody>
-          @for (transaction of transactions; track transaction.id) {
+          @for (transaction of filteredTransactions; track transaction.id) {
             <tr>
               <td>
                 <div class="transaction-name">
-                  <div class="transaction-avatar">{{transaction.name | customInitials}}</div>
+                  <div class="transaction-avatar">{{ transaction.name | customInitials }}</div>
                   <div>
                     <div class="transaction-title">{{ transaction.name }}</div>
                     <div class="transaction-bic">{{ transaction.bic }}</div>
                   </div>
                 </div>
               </td>
-              <td class="text-secondary">{{ transaction.date }}</td>
+              <td class="text-secondary">{{ transaction.date | customDate }}</td>
               <td class="text-secondary">{{ transaction.city }}</td>
               <td class="text-secondary">{{ transaction.bankCard }}</td>
               <td>
                 <span class="type-badge credit">{{ transaction.type }}</span>
               </td>
               <td>
-                <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">{{
-                  transaction.status
-                }}</span>
+                <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">{{ transaction.status }}</span>
               </td>
-              <td class="amount-positive">{{ transaction.amount | customCurrency }}</td>
+              <td class="amount">{{ transaction.amount | customCurrency }}</td>
               <td>
                 <button class="details-btn">Details</button>
+              </td>
+            </tr>
+          }
+          @if (filteredTransactions.length === 0) {
+            <tr>
+              <td colspan="8">
+                <div class="empty-state">
+                  <div class="empty-title">No transactions found</div>
+                  <div class="empty-sub">Try adjusting your search</div>
+                </div>
               </td>
             </tr>
           }
         </tbody>
       </table>
       <div class="pagination">
-        <span class="pagination-info">Showing 1–9 of 9 transactions</span>
+        <span class="pagination-info">Showing {{filteredTransactions.length > 0 ? 1 : 0}}–{{filteredTransactions.length}} of {{filteredTransactions.length}} transactions</span>
       </div>
     </div>
   </div>
