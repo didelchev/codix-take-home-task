@@ -7,7 +7,11 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 
 export class CustomDatePipe implements PipeTransform {
-    transform(date: string): string { 
+    transform(date: string | undefined): string { 
+
+        if(!date) {
+            return ""
+        }
         const [ year, month, day] = date.split("-");
 
         return `${day}.${month}.${year}`

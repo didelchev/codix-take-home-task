@@ -8,7 +8,12 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 
 export class CustomCurrencyPipe implements PipeTransform {
-    transform(value: number): string{
+    transform(value: number | undefined): string{
+
+        if(!value){
+            return '0.00 BGN'
+        }
+
         const currency = 'BGN';
         const [ integer, decimal ] = value.toFixed(2).split('.');
 
