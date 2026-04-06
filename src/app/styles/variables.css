@@ -2,7 +2,7 @@
   /* Backgrounds */
   --bg-page: #F8FAFC;
   --bg-card: #FFFFFF;
-  --bg-sidebar: #0F172A;
+  --bg-sidebar: #F8FAFC;
   --bg-readonly: #F1F5F9;
  
   /* Text */
@@ -15,6 +15,13 @@
   --color-primary-hover: #2563EB;
   --color-primary-light: #EFF6FF;
  
+  /* Box shadow*/ 
+  --box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  
+  /* Card gradient */
+  --card-gradient: linear-gradient(135deg, #0F172A, #3B82F6);
+
+
   /* Borders */
   --border-color: #E2E8F0;
  
@@ -39,3 +46,40 @@
  
 }
  
+body.dark {
+  /* Backgrounds */
+  --bg-page: #111827;
+  --bg-card: #243044;
+  --bg-sidebar: #111827;
+  --bg-readonly: #374151;
+
+  /* Colors Primary */
+  --color-primary: #60A5FA;
+  --color-primary-hover: #3B82F6;
+  --color-primary-light: #1E3A5F;
+
+  /* Text */
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --text-placeholder: #6B7280;
+
+  /* Card Gradient */
+  --card-gradient: linear-gradient(135deg, #1E293B, #6366F1);
+
+  /* Borders */
+  --border-color: #374151;
+
+  /* Status — darker versions for dark mode */
+  --status-completed-bg: #064E3B;
+  --status-completed-text: #6EE7B7;
+
+  --status-pending-bg: #78350F;
+  --status-pending-text: #FCD34D;
+
+  --status-failed-bg: #7F1D1D;
+  --status-failed-text: #FCA5A5;
+}
+
+
+
+
