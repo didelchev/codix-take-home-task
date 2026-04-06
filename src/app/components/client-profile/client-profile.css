@@ -37,12 +37,14 @@
   width: 100%;
   aspect-ratio: 1.586 / 1;
   border-radius: 16px;
-  background: linear-gradient(135deg, #0F172A, #3B82F6);
+  background: var(--card-gradient);
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
+  box-shadow: var(--box-shadow)
+
 }
 
 .card-chip {
@@ -69,6 +71,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+
 }
 
 .card-field-label {
@@ -98,8 +101,9 @@
   display: flex;
   flex-direction: column;
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
+  box-shadow: var(--box-shadow)
+
 
 }
 
@@ -135,7 +139,7 @@
 
 .right-col {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
   display: flex;
@@ -299,4 +303,45 @@
 .error-description {
   font-size: var(--text-base);
   color: var(--text-secondary);
+}
+
+.required-star {
+  color: var(--status-failed-text);
+}
+
+.error-message {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--status-failed-text);
+  margin-top: 4px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .client-page-container {
+    grid-template-columns: 1fr;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .address-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .greeting-title {
+    font-size: var(--text-xl);
+  }
+
+  .client-page-container {
+    margin-top: 16px;
+    gap: 16px;
+  }
 }

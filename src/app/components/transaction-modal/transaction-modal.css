@@ -18,7 +18,7 @@
 }
 
 .modal-topside {
-    background: linear-gradient(135deg, #0F172A, 70%,  #3B82F6);
+    background: linear-gradient(135deg, #0F172A, #3B82F6);
     border-top-left-radius: inherit;
     border-top-right-radius:inherit;
 
@@ -67,11 +67,11 @@
 .amount-value {
   font-size: var(--text-2xl);
   font-weight: var(--font-bold);
-  color: var(--color-primary-light);
+  color: #ffffff;
 }
 
 .amount-status {
-    color: var(--);
+    color: red;
 }
 
 /* -------------------------------------- */

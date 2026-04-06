@@ -68,13 +68,14 @@
 
 .table-wrap {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .table {
   width: 100%;
+  min-width: 700px;
   border-collapse: collapse;
 }
 
@@ -152,8 +153,8 @@
 }
 
 .type-badge.credit {
-  background: var(--status-completed-bg);
-  color: var(--status-completed-text);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .type-badge.debit {
@@ -186,12 +187,17 @@
 }
 
 
-.amount-positive {
+.amount{
+  font-weight: var(--font-medium);
+}
+
+
+.amount.positive {
   color: var(--status-completed-text);
   font-weight: var(--font-semibold);
 }
 
-.amount-negative {
+.amount.negative {
   color: var(--status-failed-text);
   font-weight: var(--font-semibold);
 }
@@ -204,7 +210,7 @@
   background-color: var(--color-primary);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--color-primary-light);
+  color: #ffffff;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
 }
@@ -278,4 +284,39 @@
 .empty-sub {
   font-size: var(--text-base);
   color: var(--text-secondary);
+}
+
+
+@media (max-width: 1024px) {
+  .search-wrap {
+    width: 100%;
+  }
+
+  .table th:nth-child(3),
+  .table td:nth-child(3),
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .greeting-title {
+    font-size: var(--text-xl);
+  }
+
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    display: none;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
 }

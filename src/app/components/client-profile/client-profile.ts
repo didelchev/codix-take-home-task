@@ -26,19 +26,6 @@ export class ClientProfile implements OnInit {
     this.bankingFields = CLIENT_FORM_CONFIG.filter(field => field.section === 'banking');
   }
 
-//   ngOnInit(): void {
-
-//   this.clientService.getClient().subscribe({
-//     next: (data) => {
-//       this.client = data;
-//       this.isReady = true;
-//     },
-//     error: (err) => {
-//       this.errorMessage = err;
-//       this.isReady = true;
-//     }
-//   });
-// }
 
 ngOnInit(): void {
 

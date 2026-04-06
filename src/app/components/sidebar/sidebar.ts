@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LucideAngularModule, User, DollarSign, Palette } from 'lucide-angular';
+import { LucideAngularModule, User, DollarSign, Palette, List } from 'lucide-angular';
+import { ThemeService } from '../../services/theme.service';
 
 
 @Component({
@@ -20,10 +21,17 @@ export class Sidebar  {
   readonly UserIcon = User
   readonly DollarIcon = DollarSign 
   readonly PaletteIcon = Palette
+  readonly ListIcon = List
   
   private intervalId: any;
 
+
+  constructor(private themeService: ThemeService){}
+
+
+
   ngOnInit(): void {
+    this.themeService.loadTheme();
     this.updateClock();
     this.intervalId = setInterval(() => this.updateClock(), 1000);
   }
@@ -37,8 +45,7 @@ export class Sidebar  {
 
     const hours = now.getHours() % 12 || 12;
     const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0')
-    this.time.set(`${hours}:${minutes}:${seconds}`);
+    this.time.set(`${hours}:${minutes}`);
     this.period.set(now.getHours() >= 12 ? 'PM' : 'AM');
 
     this.day.set(now.toLocaleDateString('en-US', { weekday: 'long' }));
@@ -46,5 +53,9 @@ export class Sidebar  {
 
   }
 
+
+  changeTheme(): void {
+    return this.themeService.toggleTheme();
+  }
 
 }
