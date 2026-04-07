@@ -6,13 +6,16 @@ import { CustomCurrencyPipe } from '../../pipes/currency.pipe';
 import { CustomDatePipe } from '../../pipes/date.pipe';
 import { FormsModule, NgModel } from "@angular/forms";
 import { TransactionModal } from '../transaction-modal/transaction-modal';
+import { ChevronDown, ChevronUp, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-transactions',
-  imports: [NgClass, CustomInitialsPipe, CustomCurrencyPipe, CustomDatePipe, FormsModule, TransactionModal],
+  imports: [NgClass, CustomInitialsPipe, CustomCurrencyPipe, CustomDatePipe, FormsModule, TransactionModal,LucideAngularModule],
   templateUrl: './transactions.html',
   styleUrl: './transactions.css',
 })
+
+
 export class Transactions implements OnInit {
   transactions: Transaction[] = [];
   filteredTransactions: Transaction[] = [];
@@ -21,6 +24,9 @@ export class Transactions implements OnInit {
   isModalOpen = false;
   isReady = false;
   errorMessage = '';
+
+  readonly ArrowUp = ChevronUp
+  readonly ArrowDown = ChevronDown
 
   constructor(private transactionService: ClientService) {}
 

@@ -191,6 +191,13 @@
   font-weight: var(--font-medium);
 }
 
+.amount lucide-icon {
+  position: relative;
+  top: 3px;
+  font-weight: var(--font-semibold);
+  /* margin-right: 4px; */
+}
+
 
 .amount.positive {
   color: var(--status-completed-text);
@@ -239,9 +246,9 @@
 .loading-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  padding: 80px 0;
   gap: 16px;
 }
 

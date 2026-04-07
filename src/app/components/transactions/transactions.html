@@ -55,11 +55,16 @@
               <td>
                 <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">{{ transaction.status }}</span>
               </td>
-              <td class="amount" [ngClass]="transaction.type === 'Credit' ? 'negative' : 'positive' ">{{ transaction.amount | customCurrency }}</td>
+              <td class="amount" [ngClass]="transaction.type === 'Credit' ? 'negative' : 'positive' ">
+                <lucide-icon [size]="16" [img]="transaction.type === 'Credit' ? ArrowDown : ArrowUp "></lucide-icon>
+                {{ transaction.amount | customCurrency }}
+              </td>
               <td>
                 <button class="details-btn" (click)="openModal(transaction)">Details</button>
               </td>
             </tr>
+      
+
           }
           @if (filteredTransactions.length === 0) {
             <tr>
