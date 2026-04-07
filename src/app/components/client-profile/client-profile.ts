@@ -30,6 +30,14 @@ export class ClientProfile implements OnInit {
 ngOnInit(): void {
 
   setTimeout(() => {
+    const savedClient = localStorage.getItem('client');
+
+    if(savedClient){
+      this.client = JSON.parse(savedClient);
+      this.isReady = true;
+      return
+    }
+    
     this.clientService.getClient().subscribe({
       next: (data) => {
         this.client = data;
@@ -44,6 +52,11 @@ ngOnInit(): void {
 }
 
   onSave(): void {
-    console.log('Saved client:', this.client);
+    if(!this.client){
+      return
+    }
+
+    localStorage.setItem('client', JSON.stringify(this.client));
+    console.log('Client saved:', this.client)
   }
 }
