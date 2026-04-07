@@ -17,8 +17,14 @@
   width: 90%;
   margin: 0 auto;
   flex: 1;
-  overflow-y: auto;
-  padding: 50px
+  overflow: auto;
+  padding: 50px;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.main-content::-webkit-scrollbar {
+  display: none; 
 }
 
 
