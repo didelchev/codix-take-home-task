@@ -14,6 +14,7 @@ import { Client } from '../../models/client.model';
 export class ClientProfile implements OnInit {
   client: Client | null = null;
   isReady = false;
+  showToast = false;
   errorMessage = '';
 
   personalFields: FormFieldConfig[] = [];
@@ -37,7 +38,7 @@ ngOnInit(): void {
       this.isReady = true;
       return
     }
-    
+
     this.clientService.getClient().subscribe({
       next: (data) => {
         this.client = data;
@@ -55,8 +56,12 @@ ngOnInit(): void {
     if(!this.client){
       return
     }
-
     localStorage.setItem('client', JSON.stringify(this.client));
-    console.log('Client saved:', this.client)
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    },2000)
+
   }
 }
