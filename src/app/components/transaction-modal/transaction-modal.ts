@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CustomCurrencyPipe } from '../../pipes/currency.pipe';
 import { CustomDatePipe } from '../../pipes/date.pipe';
 import { NgClass } from '@angular/common';
+import { Transaction } from '../../models/transaction.model';
 
 @Component({
   selector: 'app-transaction-modal',
