@@ -48,7 +48,7 @@ Then open your browser at `http://localhost:4200`.
 
 ## Angular Version
 
-This project was built with **Angular 19** using standalone components.
+This project was built with **Angular 21** using standalone components.
 
 ## Technical Decisions
 
