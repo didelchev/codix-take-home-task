@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { NgClass } from '@angular/common';
 import { CustomInitialsPipe } from '../../pipes/initials.pipe';
@@ -7,6 +7,7 @@ import { CustomDatePipe } from '../../pipes/date.pipe';
 import { FormsModule, NgModel } from "@angular/forms";
 import { TransactionModal } from '../transaction-modal/transaction-modal';
 import { ChevronDown, ChevronUp, LucideAngularModule } from 'lucide-angular';
+import { Transaction } from '../../models/transaction.model'
 
 @Component({
   selector: 'app-transactions',
@@ -30,6 +31,13 @@ export class Transactions implements OnInit {
 
   constructor(private transactionService: ClientService) {}
 
+   filterTransactionsArray(): void {
+     this.filteredTransactions = this.transactions.filter(transaction => { 
+        return transaction.name.toLowerCase().includes(this.searchQuery) ||
+               transaction.status.toLowerCase().includes(this.searchQuery)
+     })
+  }
+
   ngOnInit(): void {
     setTimeout(() => {
       this.transactionService.getTransactions().subscribe({
@@ -46,14 +54,7 @@ export class Transactions implements OnInit {
     }, 1000);
   }
 
-   filterTransactionsArray(): void {
-     this.filteredTransactions = this.transactions.filter(transaction => { 
-        return transaction.name.toLowerCase().includes(this.searchQuery) ||
-               transaction.status.toLowerCase().includes(this.searchQuery)
-     })
-  }
-
-
+  
   openModal(transaction: Transaction): void { 
     if(!transaction){
       return

@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './components/sidebar/sidebar';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,11 @@ import { Sidebar } from './components/sidebar/sidebar';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('codix-take-home-task');
+export class App implements OnInit{
+
+  constructor(private themeSerivce: ThemeService){}
+
+  ngOnInit(): void {
+    this.themeSerivce.loadTheme();
+  }
 }

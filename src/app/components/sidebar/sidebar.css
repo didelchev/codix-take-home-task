@@ -128,11 +128,7 @@ body.dark .nav-item.active {
   cursor: pointer;
 }
 
-.nav-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
+
 
 .user-info {
   margin-top: auto;
@@ -166,11 +162,6 @@ body.dark .nav-item.active {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   color: var(--text-primary);
-}
-
-.user-email {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
 }
 
 
@@ -213,8 +204,4 @@ body.dark .nav-item.active {
     padding-left: 16px;
   }
 
-  .main-wrapper {
-    padding-left: 0;
-    padding-bottom: 60px;
-  }
 }
